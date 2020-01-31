@@ -38,3 +38,22 @@ describe('server', function() {
         })
     })
 })
+
+describe('users router', function() {
+    it('should return status 200 OK', function() {
+        return request(server)
+            .get('/users')
+            .then(response => {
+                expect(response.status).toBe(200)
+            })
+    })
+
+    it('should return users in database', function() {
+        return request(server)
+            .get('/users')
+            .then(response => {
+                const users = response.body.users
+                expect(response.body.users).toBe(users)
+            })
+    })
+})
